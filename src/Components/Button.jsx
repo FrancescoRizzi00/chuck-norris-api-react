@@ -1,8 +1,10 @@
-import {userState} from 'react'
+import { useState } from 'react'
 import '../Styles/Button.css'
 
-function Button({ text, variant, callback }){      
-        const[count, setCount] = useState(0)
+function Button({ text, variant, callback }){     
+
+        const[count, setCount] = useState(0)     
+
         let clickHandler = function(e){
             console.log(e)
             if(variant !="disabled"){
