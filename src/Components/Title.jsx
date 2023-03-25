@@ -2,7 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import '../Styles/Title.css'
 
-function App() {
+function Title() {
   const [count, setCount] = useState(0)
 
   return (
@@ -12,4 +12,4 @@ function App() {
   )
 }
 
-export default App
+export default Title
