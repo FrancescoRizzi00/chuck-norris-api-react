@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './Styles/App.css'
 import './Styles/Title.css'
+import './Styles/Dropdown.css'
 import Titolo from './Components/Title.jsx'
 import Button from './Components/Button.jsx'
 import Dropdown from './Components/Dropdown.jsx'
