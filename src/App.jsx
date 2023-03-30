@@ -1,33 +1,49 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './Styles/App.css'
-import Button from './Components/Button'
-
+import './Styles/Title.css'
+import Titolo from './Components/Title.jsx'
+import Button from './Components/Button.jsx'
+import Dropdown from './Components/Dropdown.jsx'
+import Paragrafo from './Components/Paragraph.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [categories, setCategories] = useState([])
   const [joke, setJoke] = useState("")
 
-  let loadJokeCallback = function(){
-    console.log("ciao")
-    setJoke("testo")
+  let url = "https://api.chucknorris.io/jokes/categories"
+    fetch(url).then((resp)=>{
+      return resp.json()
+    }).then(data=>{
+      data.unshift("random")
+      setCategories(data)
+    }).catch((e)=>{
+      console.log(e)
+    })
+
+  let loadJokeCallback = function (){
+    let category = document.getElementById("jokeCategory").value
+    let url2 = "https://api.chucknorris.io/jokes/random" + (category!=="random" ? "?category=" + category : "")
+
+    fetch(url2).then((resp)=>{
+      return resp.json()
+    }).then(data=>{
+      setJoke(data.value)
+    }).catch((e)=>{
+      console.log(e)
+    })
+  }
+  
+  let copyTextCallback = function (){
+    console.log ("bye")
   }
 
-  let copyTextCallback = function(){
-    console.log("bye")
-
-  }
   return (
-    <div className='App'>
-      <h1>Benvenuti</h1>
-      <p>Sito Chuck</p>
-      <div id='contenutoJoke'>
-        <button onClick={() => setCount((count) => count+1)}>
-          count is {count}
-        </button>
-    <Button text="carica il joke" callback={loadJokeCallback}></Button>
-    <Button text="copia" variant={joke === "" ? "disabled": undefined }callback={copyTextCallback}></Button>
-      </div>
+    <div className="App" align="center">
+      <Titolo></Titolo>
+      <Paragrafo text={joke}/>
+      <Button text='Carica il joke'  callback={loadJokeCallback}/>
+      <Dropdown data={categories} id="jokeCategory"></Dropdown>
+      <Button text='Copia' variant={ joke == "" ? "disabled" : undefined}callback={copyTextCallback}/>
     </div>
   )
 }
