@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import '../styles/Dropdown.css'
+import './Styles/Dropdown.css'
 
 function Dropdown({data,id}) {
 
