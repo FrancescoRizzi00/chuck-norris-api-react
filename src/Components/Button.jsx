@@ -3,6 +3,7 @@ import '../Styles/Button.css'
 import  './Title'
 
 
+
 function Button({text,variant,callback}) {
   const [count, setCount] = useState(0)
   let clickHandler = function(e){
